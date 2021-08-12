@@ -26,12 +26,12 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 class Quote {
   String author;
   String quote;
-  Quote(this.quote,this.author);
+  Quote(this.quote, this.author);
 }
-
 
 class HomePage extends StatefulWidget {
   @override
@@ -39,12 +39,11 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
-  List<Quote> quotes =[
-
-    Quote( "be yourself; everyone else is already taken", "oscar wilde"),
-    Quote( "this is test quote 2", "mikey"),
-    Quote( "good thing about music, when it hits you, you feel no pain", "bob marley"),
+  List<Quote> quotes = [
+    Quote("be yourself; everyone else is already taken", "oscar wilde"),
+    Quote("this is test quote 2", "mikey"),
+    Quote("good thing about music, when it hits you, you feel no pain",
+        "bob marley"),
   ];
   @override
   Widget build(BuildContext context) {
@@ -56,25 +55,21 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Colors.redAccent,
       ),
       body: Column(
-        children: quotes.map((quote) => QuoteCard(
-
-            quote:quote,
-            delete:(){
-              setState(() {
-                quotes.remove(quote);
-              });
-            }
-        )).toList(),
+        children: quotes
+            .map((quote) => QuoteCard(
+                quote: quote,
+                delete: () {
+                  setState(() {
+                    quotes.remove(quote);
+                  });
+                }))
+            .toList(),
       ),
     );
   }
-  }
-
-
-
+}
 
 class QuoteCard extends StatelessWidget {
-
   final Quote quote;
   final Function delete;
   QuoteCard({required this.quote, required this.delete});
@@ -95,7 +90,9 @@ class QuoteCard extends StatelessWidget {
                 color: Colors.grey[600],
               ),
             ),
-            SizedBox(height: 10,),
+            SizedBox(
+              height: 10,
+            ),
             Text(
               quote.author,
               style: TextStyle(
@@ -103,12 +100,13 @@ class QuoteCard extends StatelessWidget {
                 color: Colors.grey[800],
               ),
             ),
-            SizedBox(height: 8.0,),
+            SizedBox(
+              height: 8.0,
+            ),
             TextButton(
-                onPressed:(){
-                  print("Hello1");
+                onPressed: () {
                   delete();
-                  print("Hello2");},
+                },
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -117,8 +115,7 @@ class QuoteCard extends StatelessWidget {
                       'delete quote',
                     ),
                   ],
-                )
-            )
+                ))
           ],
         ),
       ),
